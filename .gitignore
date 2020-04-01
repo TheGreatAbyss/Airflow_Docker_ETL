@@ -1,0 +1,6 @@
+.DS_Store
+.idea
+data/
+postgres-data/
+*.pytest_cache
+*__pycache__/
