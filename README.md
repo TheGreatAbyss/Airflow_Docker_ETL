@@ -1,15 +1,12 @@
 # Installation
 
-docker-compose build
-docker-compose run app python /app/migrations/migrations.py
-
 #### Requirements:
 1. Install Docker if not already installed: https://www.docker.com/
 
 ### Basic steps to build application and run the ETL using Apache Airflow:
 1. Pull down this repo with git clone
 1. In your working directory create a folder called data, and place the sample data in it.  I didn't include it because it's too large
-1. Create another folder called postgres-data, this is where post-gres will maintain state when the image is not running
+1. Create another folder called postgres-data, this is where post-gres will maintain state when the container is not running
 1. Build two docker images, one with Airflow and one with Postgres: `docker-compose build`
 1. Create the tables in postgres using a pretend migration tool: `docker-compose run app python /app/migrations/migrations.py`
 1. You can then manually run the two ETLS with:  
@@ -29,12 +26,12 @@ visual studio code is free and also supports this:  https://code.visualstudio.co
 note:  It might be possible to build airflow in a Virtualenv using Pipenv for local dev, but I encountered 
 pipenv installation errors
 
-To run the application using your local development folder mounted:
+To test code changes without having to rebuild the entire image, run the application using your local development folder mounted:
 ```
 docker-compose run -v $PWD:/app app python -m etl_src.ETLs.IEEE.transactions_etl
 ```
 
-Be sure to rebuild after any changes 
+Be sure to rebuild when done with development
 
 ### Using Pycharm PE
 The best way to do local development on this repo is with PyCharm Professional Edition using 
