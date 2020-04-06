@@ -42,7 +42,7 @@ class PostGresRowInserter:
             if not val:
                 return 'NULL, '
             if type(val) is str:
-                formatted = val.replace("'", "\\'")
+                formatted = val.replace("'", "''")
                 return "'{0}', ".format(formatted)
             else:
                 return "{0}, ".format(val)
@@ -56,7 +56,7 @@ class PostGresRowInserter:
         for col, val in zipped:
             if val:
                 if type(val) is str:
-                    formatted = val.replace("'", "\\'")
+                    formatted = val.replace("'", "''")
                     upsert_string +=  '"{0}" = \'{1}\', '.format(col, formatted)
                 else:
                     upsert_string += '"{0}" = {1}, '.format(col, val)
