@@ -14,4 +14,4 @@ ENV PYTHONPATH /app
 RUN /app/docker_pip_installation.sh
 RUN airflow initdb
 
-CMD ["/app/start_airflow.sh"]
+ENTRYPOINT ["/app/start_airflow.sh"]

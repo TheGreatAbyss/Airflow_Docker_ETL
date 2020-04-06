@@ -1,8 +1,6 @@
-import unittest
 import pandas as pd
 
 from collections import OrderedDict
-from numpy import dtype
 
 from etl_src.util.logging import init_logging
 from etl_src.util.schema_inferences import SchemaInferences

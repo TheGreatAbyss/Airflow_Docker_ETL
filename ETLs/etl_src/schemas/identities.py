@@ -46,3 +46,5 @@ identities_schema = OrderedDict({
     "DeviceType": partial(skip_empty_string, conversion_func=str),
     "DeviceInfo": partial(skip_empty_string, conversion_func=str)
 })
+
+primary_key = "TransactionID"

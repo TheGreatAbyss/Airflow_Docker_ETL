@@ -399,3 +399,5 @@ transactions_schema = OrderedDict({
     "V338": partial(skip_empty_string, conversion_func=float),
     "V339": partial(skip_empty_string, conversion_func=float)
 })
+
+primary_key = "TransactionID"

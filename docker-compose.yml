@@ -1,17 +1,21 @@
 version: '3.6'
 
 services:
-  app:
+  air-flow:
     build: .
     depends_on:
       - db
     links:
       - "db:database"
     networks:
-      - default
+      - etl-network
     restart: always
     ports:
       - 8080:8080
+    volumes:
+      - type: bind
+        source: /var/run/docker.sock
+        target: /var/run/docker.sock
 
   db:
     environment:
@@ -20,9 +24,13 @@ services:
       POSTGRES_DB: etl
     image: postgres:latest
     networks:
-      - default
+      - etl-network
     ports:
       - 5432:5432
     restart: always
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
+
+networks:
+  etl-network:
+   name: etl-network

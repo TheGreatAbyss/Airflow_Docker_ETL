@@ -1,6 +1,6 @@
 .DS_Store
 .idea
-data/
+ETLs/data/
 postgres-data/
 *.pytest_cache
 *__pycache__/
