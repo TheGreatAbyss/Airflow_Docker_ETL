@@ -9,9 +9,13 @@ case $cmd in
     ;;
     'etl-build-image') docker build --no-cache -t etl-application -f ./ETLs/Dockerfile .
     ;;
-    'build-airflow-application') docker-compose build
+    'airflow-build') docker-compose build
     ;;
-    'start-airflow-application') docker-compose up
+    'airflow-start') docker-compose up
+    ;;
+    'airflow-stop') docker-compose down
+    ;;
+    'airflow-shell') docker-compose run -v $PWD:/app app python -m etl_src.ETLs.IEEE.transactions_etl
     ;;
     'run-migration') docker run --net etl-network -it --rm etl-application python /app/migrations/migrations.py
     ;;

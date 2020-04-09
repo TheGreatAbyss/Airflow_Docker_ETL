@@ -24,7 +24,7 @@ Be sure to either turn the schedule on, or run it manually
 1. In the top level directory create another folder called postgres-data, this is where post-gres will maintain state when the container is not running
 1. Build the swarm containing Airflow and Postgres:  
     ```
-    ./util.sh build-airflow-application
+    ./util.sh airflow-build
     ```
 1. Build the ETL application:
     ```
@@ -32,7 +32,7 @@ Be sure to either turn the schedule on, or run it manually
     ``` 
 1. Start the airflow and postgres application:
    ```
-   ./util.sh start-airflow-application
+   ./util.sh airflow-start
    ``` 
 1. Create the tables in postgres using a pretend migration tool:
     ```
@@ -46,6 +46,17 @@ You can also test the jobs manually using just the ETL application container wit
     ```
 
 Note:  The airflow container mounts to your docker socket at `/var/run/docker.sock`.
+
+### Stopping the application
+**Important** To stop the application run
+```
+./util-sh airflow-stop
+```
+This runs `docker-compose down`. 
+It's important to stop the application with this command as it will remove the created containers.  If you do not
+do this when stopping the containers then the airflow process may not be properly terminated.  
+When you running docker-compose up again it will simply restart the existing container, 
+which my cause issues with already running processes.  
 
 
 # Development
